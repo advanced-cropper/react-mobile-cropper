@@ -1,0 +1,16 @@
+$rmc-main-color: #61DAFB !default;
+
+$rmc-spinner-color: $rmc-main-color !default;
+
+$rmc-handler-color: $rmc-main-color !default;
+$line-color: white;
+$big-handler-color: $rmc-handler-color;
+$big-handler-size: 16px;
+$big-handler-width: 2px;
+$small-handler-size: 4px;
+$small-handler-color: $rmc-handler-color;
+$handler-padding: 4px;
+$handler-wrapper-size: $big-handler-size + $handler-padding * 2;
+
+$bar-color: white;
+$highlighted-bar-color: $rmc-main-color;

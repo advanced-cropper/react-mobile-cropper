@@ -1,0 +1,59 @@
+@import '../styles/constants.scss';
+
+.rmc-rotate-component {
+	&__bars {
+		cursor: grab;
+		width: 100%;
+		display: flex;
+		min-width: 0;
+		position: relative;
+		height: 15px;
+		&--dragging {
+			cursor: grabbing !important;
+		}
+	}
+	&__bar {
+		position: absolute;
+		left:0;
+		height: 15px;
+		width: 3px;
+		flex-shrink: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		background: $bar-color;
+		&--highlighted {
+			background-color: $rmc-main-color;
+			background-color: var(--rmc-main-color);
+		}
+		&--zero {
+			height: 20px;
+		}
+	}
+	&__value {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 3px;
+		background-color: $rmc-main-color;
+		background-color: var(--rmc-main-color);
+		color: $rmc-main-color;
+		color: var(--rmc-main-color);
+		height: 25px;
+		border-radius: 2px;
+	}
+	&__value-number {
+		position: absolute;
+		top: -20px;
+		color: inherit;
+		left: 50%;
+		transform: translateX(-50%);
+		font-size:12px;
+	}
+}
+
+body {
+	&.dragging {
+		cursor: grabbing  !important;
+	}
+}

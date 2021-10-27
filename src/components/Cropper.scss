@@ -1,0 +1,170 @@
+@import '../styles/constants';
+
+@mixin hideable() {
+	visibility: hidden;
+	opacity: 0;
+	transition: 0.5s;
+	transition-delay: 0s;
+	&--visible {
+		transition-delay: 0.5s;
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.rmc-cropper {
+	padding-bottom: 80px;
+	position: relative;
+	overflow: hidden;
+	padding-top: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background: black;
+	max-height: 100%;
+	display: flex;
+	flex-direction: column;
+
+	&__boundary {
+		max-height: 100%;
+		max-width: 100%;
+		min-height: 0;
+		flex-grow: 1;
+	}
+
+	&__wrapper {
+		@include hideable();
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+
+	&__image-wrapper {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background: black;
+	}
+
+	&__stencil-wrapper {
+		position: absolute;
+	}
+
+	&__navigation {
+		@include hideable();
+		position: absolute;
+		bottom: 0;
+		max-width: 450px;
+		width: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	&__spinner {
+		@include hideable();
+		stroke: $rmc-main-color;
+		stroke: var(--rmc-main-color);
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.rmc-rectangle-stencil, .rmc-circle-stencil {
+	&__line {
+		border-color: rgba($line-color, 0.8);
+	}
+
+	&__handler-wrapper {
+		width: $handler-wrapper-size;
+		height: $handler-wrapper-size;
+
+		&--west-north {
+			transform: translate(-$handler-padding - 1, -$handler-padding - 1);
+		}
+
+		&--east-south {
+			transform: translate(-$big-handler-size - $handler-padding + 1, -$big-handler-size - $handler-padding + 1);
+		}
+
+		&--west-south {
+			transform: translate(-$handler-padding - 1, -$big-handler-size - $handler-padding + 1);
+		}
+
+		&--east-north {
+			transform: translate(-$big-handler-size - $handler-padding + 1, -$handler-padding - 1);
+		}
+	}
+
+	&__handler {
+		display: block;
+		position: relative;
+		flex-shrink: 0;
+		transition: opacity 0.5s;
+		border: none;
+		background: $rmc-main-color;
+		background: var(--rmc-main-color);
+		top: auto;
+		left: auto;
+		height: $small-handler-size;
+		width: $small-handler-size;
+		opacity: 0;
+
+		&--west-north,
+		&--east-south,
+		&--west-south,
+		&--east-north {
+			display: block;
+			height: $big-handler-size;
+			width: $big-handler-size;
+			background: none;
+			opacity: 0.7;
+		}
+
+		&--west-north {
+			border-left: solid $big-handler-width $rmc-main-color;
+			border-left: solid $big-handler-width var(--rmc-main-color);
+			border-top: solid $big-handler-width $rmc-main-color;
+			border-top: solid $big-handler-width var(--rmc-main-color);
+		}
+
+		&--east-south {
+			border-right: solid $big-handler-width $rmc-main-color;
+			border-right: solid $big-handler-width var(--rmc-main-color);
+			border-bottom: solid $big-handler-width $rmc-main-color;
+			border-bottom: solid $big-handler-width var(--rmc-main-color);
+		}
+
+		&--west-south {
+			border-left: solid $big-handler-width $rmc-main-color;
+			border-left: solid $big-handler-width var(--rmc-main-color);
+			border-bottom: solid $big-handler-width $rmc-main-color;
+			border-bottom: solid $big-handler-width var(--rmc-main-color);
+		}
+
+		&--east-north {
+			border-right: solid $big-handler-width $rmc-main-color;
+			border-right: solid $big-handler-width var(--rmc-main-color);
+			border-top: solid $big-handler-width $rmc-main-color;
+			border-top: solid $big-handler-width var(--rmc-main-color);
+		}
+
+		&--hover {
+			opacity: 1;
+		}
+	}
+}
+
+.rmc-circle-stencil {
+	&__line {
+		border-color: rgba($line-color, 0.3);
+	}
+	&__preview {
+		border: solid 2px rgba($line-color, 0.8);
+	}
+	&__handler {
+		&--hover {
+			opacity: 1;
+		}
+	}
+}

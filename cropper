@@ -1,0 +1,264 @@
+const {
+	refresh,
+	reset,
+} = useCropper({
+
+}, {
+	
+})
+
+const cropper = Cropper({
+	onChange() {
+		
+	}
+	onUpdate() {
+		
+	},
+	aspectRatio() {
+		
+	},
+	image() {
+	
+	},
+	area() {
+	
+	},
+	stretcher() {
+	
+	},
+	canvas() {
+	
+	},
+	sourceCanvas() {
+	
+	}
+);
+
+const { settings, props, coefficient, image, boundaries, visibleArea, coordinates } = cropper.render();
+
+const {
+	src,
+	size,
+	loaded,
+	crossOrigin,
+	transforms
+} = image;
+
+const {
+	width,
+	height,
+} = boundaries;
+
+const {
+	left,
+	top,
+	width,
+	height
+} = visibleArea;
+
+
+const cropper = new Cropper({
+	aspectRatio() {
+		return {
+			minimum: 1,
+			maximum: 1,
+		}
+	},
+	boundaries() {
+		return {
+			width: 100,
+			height: 100,
+		}
+	},
+	onChange() {
+		
+	}
+})
+
+
+
+window.addEventListener('resize', updateBoundaries);
+
+function updateBoundaries() {
+	initStretcher(stretcher);
+	cropper.setBoundaries({
+		width: boundaries.clientWidth,
+		height: boundaries.clientHeight
+	});
+}
+
+const image = new ImageCropper(this.$refs.image, {
+	onLoad()
+})
+
+image.set('').then(() => {
+	cropper.set(
+});
+
+cropper.onChangeImage({
+	width: 100,
+	height: 100
+})
+
+cropper.changeBoundaries({
+	width: boundaries.clientWidth,
+	height: boundaries.clientHeight
+});
+
+cropper.move();
+
+cropper.resize();
+
+cropper.manipulateImage();
+
+
+
+
+
+onChangeImage() {
+	this.imageLoaded = false;
+	this.delayedTransforms = null;
+	this.imageAttributes.src = null;
+
+	if (this.src) {
+		const promise = parseImage(this.src);
+		if (isCrossOriginURL(this.src) && this.canvas) {
+			this.imageAttributes.crossOrigin = this.crossOrigin;
+		}
+		setTimeout(() => {
+			promise.then(this.onParseImage);
+		}, this.transitionTime);
+	} else {
+		this.clearImage();
+	}
+}
+
+onParseImage({ source, arrayBuffer, orientation }) {
+	if (arrayBuffer && orientation && isLocal(source)) {
+		this.imageAttributes.src = arrayBufferToDataURL(arrayBuffer);
+	} else {
+		this.imageAttributes.src = source;
+	}
+	this.basicImageTransforms = getImageTransforms(orientation);
+	this.$nextTick(() => {
+		const image = this.$refs.image;
+		if (image && image.complete) {
+			if (isLoadedImage(image)) {
+				this.onSuccessLoadImage();
+			} else {
+				this.onFailLoadImage();
+			}
+		}
+	});
+}
+
+onFailLoadImage() {
+	this.clearImage();
+	this.$emit('error');
+}
+
+onSuccessLoadImage() {
+	// After loading image the current component can be unmounted
+	// Therefore there is a workaround to prevent processing the following code
+	const image = this.$refs.image;
+	if (image && !this.imageLoaded) {
+		if (this.imageTransforms.flipped) {
+			this.imageSize.height = image.naturalWidth;
+			this.imageSize.width = image.naturalHeight;
+		} else {
+			this.imageSize.height = image.naturalHeight;
+			this.imageSize.width = image.naturalWidth;
+		}
+		this.imageLoaded = true;
+		this.reset().then(() => {
+			this.$emit('ready');
+		});
+	}
+}
+
+const cropper = new Cropper({
+	onChange() {
+		canvas.draw()
+	}
+});
+
+const canvas = new CropperCanvas(canvas, sourceCanvas);
+
+const image = new CropperImage(image, {
+	onChange({ size }) {
+		cropper.setImage(size);
+	},
+	onClear() {
+		cropper.setImage(null);
+	},
+	checkOrientation: false,
+	src: '111',
+});
+
+
+image.onLoad
+
+
+
+
+
+
+
+changeImage(src) {
+	image.src = src
+	image.loaded = false;
+	image.parsed = checkOrientation ? false : true;
+	image.transforms = {};
+	image.size = null;
+}
+
+onLoadImage() {
+	
+}
+
+onFailLoadImage() {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+Циклы:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cropper.onMove();
+
+cropper.onResize();
+
+cropper.onManipulateImage();
+
+cropper.onChange('src', src);
