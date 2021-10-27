@@ -50,6 +50,7 @@ export interface CropperProps
 	imageClassName?: string;
 	boundaryClassName?: string;
 	backgroundClassName?: string;
+	spinnerClassName?: string;
 	checkOrientation?: boolean;
 	canvas?: boolean;
 	crossOrigin?: 'anonymous' | 'use-credentials';
@@ -82,6 +83,7 @@ export const Cropper = forwardRef((props: CropperProps, ref) => {
 		className,
 		boundaryClassName,
 		backgroundClassName,
+		spinnerClassName,
 		boundarySizeAlgorithm,
 		stretchAlgorithm,
 		checkOrientation,
@@ -369,7 +371,7 @@ export const Cropper = forwardRef((props: CropperProps, ref) => {
 					{canvas && <CropperCanvas ref={canvasRef} />}
 				</CropperWrapper>
 				<Spinner
-					className={cn('rmc-cropper__spinner', loading && 'rmc-cropper__spinner--visible')}
+					className={cn('rmc-cropper__spinner', loading && 'rmc-cropper__spinner--visible', spinnerClassName)}
 				/>
 			</CropperBoundary>
 			{navigation && (
