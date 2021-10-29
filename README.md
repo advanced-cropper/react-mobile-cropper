@@ -52,7 +52,7 @@ export const GettingStartedExample = () => {
 
 #### CSS variables
 
-Redefine `--react-mobile-cropper-color` in your styles file:
+Redefine `--rmc-main-color` in your styles file:
 ```css
 :root {
     --rmc-main-color: #41B883;
