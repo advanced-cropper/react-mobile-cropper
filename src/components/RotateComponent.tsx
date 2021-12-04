@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { DraggableArea, MoveEvent, useWindowResize } from 'react-advanced-cropper';
+import { DraggableArea, MoveDirections, useWindowResize } from 'react-advanced-cropper';
 import cn from 'classnames';
 import { range } from '../service/utils';
 
@@ -118,11 +118,11 @@ export const RotateComponent = forwardRef<RotateComponentRef, RotateComponentPro
 			};
 		});
 
-		const onMove = (e: MoveEvent) => {
+		const onMove = (directions: MoveDirections) => {
 			if (barsRef.current) {
 				const width = barsRef.current.clientWidth;
 				const count = width / density;
-				const shift = -(e.directions.left / barsRef.current.clientWidth) * count * step;
+				const shift = -(directions.left / barsRef.current.clientWidth) * count * step;
 				if (onChange) {
 					if (value + shift > to) {
 						onChange(to - value);

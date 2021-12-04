@@ -1,22 +1,74 @@
 import {
 	CropperSettings,
 	CropperState,
+	ImageTransform,
 	PostprocessAction,
-	getAspectRatio,
-	getSizeRestrictions,
-	copyState,
-	ratio,
+	ResizeDirections,
+	ResizeOptions,
 	Size,
 	applyMove,
 	applyScale,
+	coordinatesToPositionRestrictions,
+	copyState,
 	diff,
+	getAspectRatio,
 	getCenter,
+	getMinimumSize,
+	getPositionRestrictions,
+	getSizeRestrictions,
+	mergePositionRestrictions,
+	ratio,
+	resizeCoordinatesAlgorithm,
+	transformImage,
 } from 'react-advanced-cropper';
 
 import { fitCircleToImage, fitRectangleToImage } from './position';
 import { fittedCircleSize, fittedRectangleSize } from './size';
 
-export function defaultVisibleArea(state: CropperState) {
+export function customResizeCoordinates(
+	state: CropperState,
+	settings: CropperSettings,
+	directions: ResizeDirections,
+	options: ResizeOptions,
+) {
+	const minimumSize = getMinimumSize(state);
+	return {
+		...state,
+		coordinates: resizeCoordinatesAlgorithm(state.coordinates, directions, options, {
+			positionRestrictions: mergePositionRestrictions(
+				getPositionRestrictions(state, settings),
+				coordinatesToPositionRestrictions(state.visibleArea),
+			),
+			sizeRestrictions: {
+				minWidth: minimumSize,
+				minHeight: minimumSize,
+				maxWidth: state.visibleArea.width,
+				maxHeight: state.visibleArea.height,
+			},
+			aspectRatio: getAspectRatio(state, settings),
+		}),
+	};
+}
+
+export function customTransformImage(state: CropperState, settings: CropperSettings, transform: ImageTransform) {
+	const { flip, ...otherTransforms } = transform;
+	if (flip) {
+		state = {
+			...state,
+			transforms: {
+				...state.transforms,
+				flip: {
+					horizontal: flip.horizontal ? !state.transforms.flip.horizontal : state.transforms.flip.horizontal,
+					vertical: flip.vertical ? !state.transforms.flip.vertical : state.transforms.flip.vertical,
+				},
+			},
+		};
+	}
+
+	return transformImage(state, settings, otherTransforms);
+}
+
+export function getDefaultVisibleArea(state: CropperState) {
 	const { imageSize, boundary } = state;
 
 	if (imageSize.width / imageSize.height > boundary.width / boundary.height) {
@@ -42,7 +94,7 @@ export function defaultVisibleArea(state: CropperState) {
 	}
 }
 
-export function defaultSize(state: CropperState) {
+export function getDefaultSize(state: CropperState) {
 	const { imageSize } = state;
 
 	return {
@@ -51,7 +103,7 @@ export function defaultSize(state: CropperState) {
 	};
 }
 
-export function postProcess(
+export function mobileAutoZoom(
 	state: CropperState,
 	settings: CropperSettings & { stencilType: 'circle' | 'rectangle' },
 	action: PostprocessAction,
@@ -59,14 +111,14 @@ export function postProcess(
 	const actions = [
 		'create',
 		'reconcile',
-		'interactionEnd',
 		'rotate',
 		'zoom',
+		'interactionEnd',
 		'setBoundary',
 		'setVisibleArea',
 		'setCoordinates',
 	];
-	if (actions.indexOf(action) !== -1) {
+	if (action.immediately) {
 		const result = copyState(state);
 		const { stencilType } = settings;
 

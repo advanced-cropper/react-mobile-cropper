@@ -7,18 +7,23 @@ import { RotateLeftIcon } from '../icons/RotateLeftIcon';
 import { FlipVerticalIcon } from '../icons/FlipVerticalIcon';
 import { RotateComponent, RotateComponentRef } from './RotateComponent';
 
-interface NavigationProps {
+export interface PublicNavigationProps {
+	className?: string;
+	buttonClassName?: string;
+	rotateComponentClassName?: string;
+	barClassName?: string;
+	highlightedBarClassName?: string;
+	activeBarClassName?: string;
+	zeroBarClassName?: string;
+	valueBarClassName?: string;
+}
+
+interface NavigationProps extends PublicNavigationProps {
 	value: number;
 	onRotate?: (angle: number, options?: CropperMethodOptions) => void;
 	onFlip?: (horizontal: boolean, vertical?: boolean, options?: CropperMethodOptions) => void;
 	className?: string;
 	disabled?: unknown;
-	buttonClassName?: string;
-	rotateComponentClassName?: string;
-	barClassName?: string;
-	highlightedBarClassName?: string;
-	zeroBarClassName?: string;
-	valueBarClassName?: string;
 }
 
 export interface NavigationRef {
@@ -121,16 +126,10 @@ export const Navigation = forwardRef<NavigationRef, NavigationProps>(
 
 		return (
 			<div className={cn('rmc-navigation', className)}>
-				<button
-					className={cn('rmc-navigation__button', buttonClassName)}
-					onClick={flipHorizontal}
-				>
+				<button className={cn('rmc-navigation__button', buttonClassName)} onClick={flipHorizontal}>
 					<FlipHorizontalIcon />
 				</button>
-				<button
-					className={cn('rmc-navigation__button', buttonClassName)}
-					onClick={rotateRight}
-				>
+				<button className={cn('rmc-navigation__button', buttonClassName)} onClick={rotateRight}>
 					<RotateRightIcon />
 				</button>
 				<RotateComponent
@@ -148,10 +147,7 @@ export const Navigation = forwardRef<NavigationRef, NavigationProps>(
 				<button className={cn('rmc-navigation__button', buttonClassName)} onClick={rotateLeft}>
 					<RotateLeftIcon />
 				</button>
-				<button
-					className={cn('rmc-navigation__button', buttonClassName)}
-					onClick={flipVertical}
-				>
+				<button className={cn('rmc-navigation__button', buttonClassName)} onClick={flipVertical}>
 					<FlipVerticalIcon />
 				</button>
 			</div>
