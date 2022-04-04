@@ -3,7 +3,7 @@ import cn from 'classnames';
 import {
 	Cropper as BasicCropper,
 	CropperProps as BasicCropperProps,
-	ResizeImageSettings,
+	ScaleImageSettings,
 	RectangleStencil,
 	CropperRef,
 	CircleStencil,
@@ -25,7 +25,7 @@ export interface CropperProps
 	extends Omit<BasicCropperProps, 'transitions' | 'priority' | 'imageRestriction' | 'stencilSize' | 'resizeImage'> {
 	stencilType?: 'circle' | 'rectangle';
 	spinnerClassName?: string;
-	resizeImage?: boolean | Omit<ResizeImageSettings, 'adjustStencil'>;
+	resizeImage?: boolean | Omit<ScaleImageSettings, 'adjustStencil'>;
 	navigation?: boolean;
 	navigationProps?: PublicNavigationProps;
 }
@@ -52,9 +52,7 @@ export const Cropper = forwardRef((props: CropperProps, ref) => {
 	const cropperRef = useRef<CropperRef>(null);
 
 	useUpdateEffect(() => {
-		if (cropperRef.current) {
-			cropperRef.current.refresh();
-		}
+		cropperRef.current?.refresh();
 	}, [stencilType]);
 
 	let WrapperComponent = wrapperComponent;
@@ -115,14 +113,10 @@ export const Cropper = forwardRef((props: CropperProps, ref) => {
 	return (
 		<BasicCropper
 			{...cropperProps}
+			ref={mergeRefs([ref, cropperRef])}
 			defaultSize={defaultSize}
 			defaultVisibleArea={defaultVisibleArea}
 			postProcess={postProcess}
-			ref={mergeRefs([ref, cropperRef])}
-			imageRestriction={'none'}
-			transitions={true}
-			priority={'visibleArea'}
-			className={cn('rmc-cropper', className)}
 			stencilComponent={StencilComponent}
 			transformImageAlgorithm={transformImageAlgorithm}
 			resizeCoordinatesAlgorithm={resizeCoordinatesAlgorithm}
@@ -141,6 +135,10 @@ export const Cropper = forwardRef((props: CropperProps, ref) => {
 				navigation,
 				spinnerClassName,
 			}}
+			imageRestriction={'none'}
+			transitions={true}
+			priority={'visibleArea'}
+			className={cn('rmc-cropper', className)}
 		/>
 	);
 });

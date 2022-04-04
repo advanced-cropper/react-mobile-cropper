@@ -49,7 +49,7 @@ export const RotateComponent = forwardRef<RotateComponentRef, RotateComponentPro
 
 		const [items, setItems] = useState([]);
 
-		const recalculate = useCallback(() => {
+		const recalculate = () => {
 			if (barsRef.current) {
 				const width = barsRef.current.clientWidth;
 
@@ -102,15 +102,12 @@ export const RotateComponent = forwardRef<RotateComponentRef, RotateComponentPro
 					}),
 				);
 			}
-		}, [density, thickness, from, to, value, step]);
-
-		useWindowResize(() => {
-			recalculate();
-		});
+		};
 
 		useEffect(() => {
 			recalculate();
-		}, [recalculate]);
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, [density, thickness, from, to, value, step]);
 
 		useImperativeHandle(ref, () => {
 			return {

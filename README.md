@@ -50,25 +50,19 @@ export const GettingStartedExample = () => {
 
 ### How to change the cropper's main color?
 
-#### CSS variables
-
-Redefine `--rmc-main-color` in your styles file:
+To change the cropper's main color you should redefine `color` property for the cropper.
 ```css
-:root {
-    --rmc-main-color: #41B883;
+.cropper {
+	color: red;
 }
 ```
-
-#### SCSS variables
-
-If your target browsers don't support CSS variables, then you can use the power of the postprocessor:
-```scss
-// Somewhere before import the SCSS
-$rmc-main-color: #41B883;
+```jsx
+<Cropper
+	src={src}
+	className={'cropper'}
+/>
 ```
-```scss
-@import '~react-mobile-cropper/dist/style.scss';
-```
+
 
 ## Cropper
 

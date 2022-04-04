@@ -3,31 +3,32 @@
 .rmc-cropper {
 	background: black;
 	max-height: 100%;
+	color: $rmc-main-color;
 }
 
 .rmc-rectangle-stencil, .rmc-circle-stencil {
 	&__line {
-		border-color: rgba($line-color, 0.8);
+		border-color: rgba($rmc-line-color, 0.8);
 	}
 
 	&__handler-wrapper {
-		width: $handler-wrapper-size;
-		height: $handler-wrapper-size;
+		width: $rmc-handler-wrapper-size;
+		height: $rmc-handler-wrapper-size;
 
 		&--west-north {
-			transform: translate(-$handler-padding - 1, -$handler-padding - 1);
+			transform: translate(-$rmc-handler-padding - 1, -$rmc-handler-padding - 1);
 		}
 
 		&--east-south {
-			transform: translate(-$big-handler-size - $handler-padding + 1, -$big-handler-size - $handler-padding + 1);
+			transform: translate(-$rmc-big-handler-size - $rmc-handler-padding + 1, -$rmc-big-handler-size - $rmc-handler-padding + 1);
 		}
 
 		&--west-south {
-			transform: translate(-$handler-padding - 1, -$big-handler-size - $handler-padding + 1);
+			transform: translate(-$rmc-handler-padding - 1, -$rmc-big-handler-size - $rmc-handler-padding + 1);
 		}
 
 		&--east-north {
-			transform: translate(-$big-handler-size - $handler-padding + 1, -$handler-padding - 1);
+			transform: translate(-$rmc-big-handler-size - $rmc-handler-padding + 1, -$rmc-handler-padding - 1);
 		}
 	}
 
@@ -37,12 +38,11 @@
 		flex-shrink: 0;
 		transition: opacity 0.5s;
 		border: none;
-		background: $rmc-main-color;
-		background: var(--rmc-main-color);
+		background: $rmc-base-color;
 		top: auto;
 		left: auto;
-		height: $small-handler-size;
-		width: $small-handler-size;
+		height: $rmc-small-handler-size;
+		width: $rmc-small-handler-size;
 		opacity: 0;
 
 		&--west-north,
@@ -50,38 +50,30 @@
 		&--west-south,
 		&--east-north {
 			display: block;
-			height: $big-handler-size;
-			width: $big-handler-size;
+			height: $rmc-big-handler-size;
+			width: $rmc-big-handler-size;
 			background: none;
 			opacity: 0.7;
 		}
 
 		&--west-north {
-			border-left: solid $big-handler-width $rmc-main-color;
-			border-left: solid $big-handler-width var(--rmc-main-color);
-			border-top: solid $big-handler-width $rmc-main-color;
-			border-top: solid $big-handler-width var(--rmc-main-color);
+			border-left: solid $rmc-big-handler-width $rmc-base-color;
+			border-top: solid $rmc-big-handler-width $rmc-base-color;
 		}
 
 		&--east-south {
-			border-right: solid $big-handler-width $rmc-main-color;
-			border-right: solid $big-handler-width var(--rmc-main-color);
-			border-bottom: solid $big-handler-width $rmc-main-color;
-			border-bottom: solid $big-handler-width var(--rmc-main-color);
+			border-right: solid $rmc-big-handler-width $rmc-base-color;
+			border-bottom: solid $rmc-big-handler-width $rmc-base-color;
 		}
 
 		&--west-south {
-			border-left: solid $big-handler-width $rmc-main-color;
-			border-left: solid $big-handler-width var(--rmc-main-color);
-			border-bottom: solid $big-handler-width $rmc-main-color;
-			border-bottom: solid $big-handler-width var(--rmc-main-color);
+			border-left: solid $rmc-big-handler-width $rmc-base-color;
+			border-bottom: solid $rmc-big-handler-width $rmc-base-color;
 		}
 
 		&--east-north {
-			border-right: solid $big-handler-width $rmc-main-color;
-			border-right: solid $big-handler-width var(--rmc-main-color);
-			border-top: solid $big-handler-width $rmc-main-color;
-			border-top: solid $big-handler-width var(--rmc-main-color);
+			border-right: solid $rmc-big-handler-width $rmc-base-color;
+			border-top: solid $rmc-big-handler-width $rmc-base-color;
 		}
 
 		&--hover {
@@ -92,10 +84,10 @@
 
 .rmc-circle-stencil {
 	&__line {
-		border-color: rgba($line-color, 0.3);
+		border-color: rgba($rmc-line-color, 0.3);
 	}
 	&__preview {
-		border: solid 2px rgba($line-color, 0.4);
+		border: solid 2px rgba($rmc-line-color, 0.4);
 	}
 	&__handler {
 		&--hover {

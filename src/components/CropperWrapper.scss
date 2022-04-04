@@ -30,8 +30,7 @@
 
 	&__spinner {
 		@include hideable();
-		stroke: $rmc-main-color;
-		stroke: var(--rmc-main-color);
+		stroke: $rmc-base-color;
 		position: absolute;
 		left: 50%;
 		top: 50%;

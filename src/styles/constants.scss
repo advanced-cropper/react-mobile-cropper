@@ -1,16 +1,17 @@
 $rmc-main-color: #61DAFB !default;
 
-$rmc-spinner-color: $rmc-main-color !default;
+$rmc-base-color: currentColor;
 
-$rmc-handler-color: $rmc-main-color !default;
-$line-color: white;
-$big-handler-color: $rmc-handler-color;
-$big-handler-size: 16px;
-$big-handler-width: 2px;
-$small-handler-size: 4px;
-$small-handler-color: $rmc-handler-color;
-$handler-padding: 4px;
-$handler-wrapper-size: $big-handler-size + $handler-padding * 2;
+$rmc-spinner-color: $rmc-base-color !default;
 
-$bar-color: white;
-$highlighted-bar-color: $rmc-main-color;
+$rmc-handler-color: $rmc-base-color !default;
+$rmc-line-color: white;
+$rmc-big-handler-color: $rmc-handler-color;
+$rmc-big-handler-size: 16px;
+$rmc-big-handler-width: 2px;
+$rmc-small-handler-size: 4px;
+$rmc-small-handler-color: $rmc-handler-color;
+$rmc-handler-padding: 4px;
+$rmc-handler-wrapper-size: $rmc-big-handler-size + $rmc-handler-padding * 2;
+$rmc-bar-color: white;
+$rmc-highlighted-bar-color: $rmc-base-color;

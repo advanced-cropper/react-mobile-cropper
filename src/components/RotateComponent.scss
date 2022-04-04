@@ -20,10 +20,9 @@
 		flex-shrink: 0;
 		top: 50%;
 		transform: translateY(-50%);
-		background: $bar-color;
+		background: $rmc-bar-color;
 		&--highlighted {
-			background-color: $rmc-main-color;
-			background-color: var(--rmc-main-color);
+			background-color: $rmc-base-color;
 		}
 		&--zero {
 			height: 20px;
@@ -35,10 +34,8 @@
 		top: 50%;
 		transform: translate(-50%, -50%);
 		width: 3px;
-		background-color: $rmc-main-color;
-		background-color: var(--rmc-main-color);
-		color: $rmc-main-color;
-		color: var(--rmc-main-color);
+		background-color: $rmc-base-color;
+		color: $rmc-base-color;
 		height: 25px;
 		border-radius: 2px;
 	}
