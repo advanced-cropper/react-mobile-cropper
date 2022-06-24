@@ -1,14 +1,16 @@
-import React, { FC, useEffect, useRef } from 'react';
+import React, { CSSProperties, FC, useEffect, useRef } from 'react';
 import { CropperRef, CropperFade } from 'react-advanced-cropper';
 import cn from 'classnames';
 import { Spinner } from '../icons/Spinner';
 import { Navigation, NavigationRef, PublicNavigationProps } from './Navigation';
+import './CropperWrapper.scss';
 
 export interface CropperWrapperProps<CropperRef = unknown> {
-	cropper?: CropperRef;
-	loading?: boolean;
-	loaded?: boolean;
+	cropper: CropperRef;
+	loading: boolean;
+	loaded: boolean;
 	className?: string;
+	style?: CSSProperties;
 	spinnerClassName?: string;
 	navigation?: boolean;
 	navigationProps?: PublicNavigationProps;
@@ -22,7 +24,7 @@ export const CropperWrapper: FC<CropperWrapperProps<CropperRef>> = ({
 	className,
 	spinnerClassName,
 	navigation,
-	navigationProps,
+	navigationProps = {},
 }) => {
 	const navigationRef = useRef<NavigationRef>(null);
 
@@ -37,7 +39,13 @@ export const CropperWrapper: FC<CropperWrapperProps<CropperRef>> = ({
 	}, [state?.boundary.width, state?.boundary.height]);
 
 	return (
-		<div className={cn('rmc-cropper-wrapper', navigation && 'rmc-cropper-wrapper--with-navigation', className)}>
+		<div
+			className={cn(
+				'rmc-cropper-wrapper',
+				navigation && 'rmc-cropper-wrapper--with-navigation',
+				className,
+			)}
+		>
 			<CropperFade className={'rmc-cropper-wrapper__fade'} visible={loaded}>
 				{children}
 				{navigation && (

@@ -2,7 +2,7 @@ import path from 'path';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
-import replace from '@rollup/plugin-replace';
+import { visualizer } from 'rollup-plugin-visualizer';
 import url from '@rollup/plugin-url';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
@@ -11,35 +11,23 @@ import { terser } from 'rollup-plugin-terser';
 import scss from 'rollup-plugin-scss';
 import pkg from './package.json';
 
-const output = [
-	{
-		file: pkg.module,
-		format: `es`,
-	},
-	{
-		file: pkg.main,
-		format: `cjs`,
-	},
-	{
-		file: pkg.unpkg,
-		format: `iife`,
-	},
-	{
-		file: pkg.browser || pkg.module.replace('bundler', 'browser'),
-		format: `es`,
-	},
-];
+const files = {
+	es: pkg.main,
+	cjs: pkg.module,
+	iife: pkg.browser,
+};
 
-export default {
+export default ['es', 'cjs', 'iife'].map((format) => ({
 	input: 'src/index.ts',
-	output: output.map((config) => ({
-		...config,
-		name: config.format === 'iife' ? 'ReactMobileCropper' : undefined,
+	output: {
+		file: files[format],
+		format,
+		name: format === 'iife' ? 'ReactMobileCropper' : undefined,
 		globals: {
 			react: 'React',
 		},
-		sourcemap: process.env.NODE_ENV !== 'production',
-	})),
+		sourcemap: true,
+	},
 	plugins: [
 		external(),
 		scss({
@@ -53,9 +41,8 @@ export default {
 		resolve(),
 		commonjs(),
 		typescript({ tsconfig: './tsconfig.json' }),
-		terser(),
-		replace({
-			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+		visualizer({
+			gzipSize: true,
 		}),
 	],
-};
+}));

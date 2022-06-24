@@ -1,29 +1,30 @@
 import React, { forwardRef, useRef } from 'react';
 import cn from 'classnames';
 import {
-	Cropper as BasicCropper,
-	CropperProps as BasicCropperProps,
+	Cropper as DefaultCropper,
+	CropperProps as DefaultCropperProps,
 	ScaleImageSettings,
-	RectangleStencil,
 	CropperRef,
-	CircleStencil,
-	useUpdateEffect,
 	mergeRefs,
+	ImageRestriction,
+	joinClassNames,
 } from 'react-advanced-cropper';
 import {
-	customResizeCoordinates,
-	customTransformImage,
-	getDefaultSize,
-	getDefaultVisibleArea,
-	mobileAutoZoom,
-} from '../algorithms';
-import { joinClassNames } from '../service/styles';
+	autoZoom,
+	resizeCoordinates,
+	transformImage,
+	defaultSize,
+	stencilConstraints,
+} from 'advanced-cropper/showcase/telegram';
 import { PublicNavigationProps } from './Navigation';
 import { CropperWrapper } from './CropperWrapper';
+import './Cropper.scss';
 
 export interface CropperProps
-	extends Omit<BasicCropperProps, 'transitions' | 'priority' | 'imageRestriction' | 'stencilSize' | 'resizeImage'> {
-	stencilType?: 'circle' | 'rectangle';
+	extends Omit<
+		DefaultCropperProps,
+		'transitions' | 'priority' | 'imageRestriction' | 'stencilSize' | 'stencilConstraints' | 'transformImage'
+	> {
 	spinnerClassName?: string;
 	resizeImage?: boolean | Omit<ScaleImageSettings, 'adjustStencil'>;
 	navigation?: boolean;
@@ -35,98 +36,42 @@ export const Cropper = forwardRef((props: CropperProps, ref) => {
 		className,
 		spinnerClassName,
 		navigation = true,
-		stateSettings = {},
-		stencilType = 'rectangle',
 		stencilProps = {},
 		navigationProps = {},
-		stencilComponent,
-		wrapperComponent = CropperWrapper,
-		defaultVisibleArea = getDefaultVisibleArea,
-		defaultSize = getDefaultSize,
-		transformImageAlgorithm = customTransformImage,
-		resizeCoordinatesAlgorithm = customResizeCoordinates,
-		postProcess = mobileAutoZoom,
+		wrapperComponent,
 		...cropperProps
 	} = props;
 
 	const cropperRef = useRef<CropperRef>(null);
 
-	useUpdateEffect(() => {
-		cropperRef.current?.refresh();
-	}, [stencilType]);
-
-	let WrapperComponent = wrapperComponent;
-
-	let StencilComponent = stencilComponent;
-
-	let stencilClassNames = {};
-
-	if (!StencilComponent) {
-		if (stencilType === 'circle') {
-			StencilComponent = CircleStencil;
-			stencilClassNames = {
-				lineClassNames: joinClassNames(stencilProps.lineClassNames, {
-					default: 'rmc-circle-stencil__line',
-				}),
-				handlerWrapperClassNames: joinClassNames(stencilProps.handlerWrapperClassNames, {
-					default: 'rmc-circle-stencil__handler-wrapper',
-					westNorth: 'rmc-circle-stencil__handler-wrapper--west-north',
-					eastSouth: 'rmc-circle-stencil__handler-wrapper--east-south',
-					westSouth: 'rmc-circle-stencil__handler-wrapper--west-south',
-					eastNorth: 'rmc-circle-stencil__handler-wrapper--east-north',
-				}),
-				handlerClassNames: joinClassNames(stencilProps.handlerClassNames, {
-					default: 'rmc-circle-stencil__handler',
-					hover: 'rmc-circle-stencil__handler--hover',
-					westNorth: 'rmc-circle-stencil__handler--west-north',
-					eastSouth: 'rmc-circle-stencil__handler--east-south',
-					westSouth: 'rmc-circle-stencil__handler--west-south',
-					eastNorth: 'rmc-circle-stencil__handler--east-north',
-				}),
-				previewClassName: cn(stencilProps.previewClassName, 'rmc-circle-stencil__preview'),
-			};
-		} else {
-			StencilComponent = RectangleStencil;
-			stencilClassNames = {
-				lineClassNames: joinClassNames(stencilProps.lineClassNames, {
-					default: 'rmc-rectangle-stencil__line',
-				}),
-				handlerWrapperClassNames: joinClassNames(stencilProps.handlerWrapperClassNames, {
-					default: 'rmc-rectangle-stencil__handler-wrapper',
-					westNorth: 'rmc-rectangle-stencil__handler-wrapper--west-north',
-					eastSouth: 'rmc-rectangle-stencil__handler-wrapper--east-south',
-					westSouth: 'rmc-rectangle-stencil__handler-wrapper--west-south',
-					eastNorth: 'rmc-rectangle-stencil__handler-wrapper--east-north',
-				}),
-				handlerClassNames: joinClassNames(stencilProps.handlerClassNames, {
-					default: 'rmc-rectangle-stencil__handler',
-					hover: 'rmc-rectangle-stencil__handler--hover',
-					westNorth: 'rmc-rectangle-stencil__handler--west-north',
-					eastSouth: 'rmc-rectangle-stencil__handler--east-south',
-					westSouth: 'rmc-rectangle-stencil__handler--west-south',
-					eastNorth: 'rmc-rectangle-stencil__handler--east-north',
-				}),
-			};
-		}
-	}
+	const WrapperComponent = wrapperComponent || CropperWrapper;
 
 	return (
-		<BasicCropper
+		<DefaultCropper
 			{...cropperProps}
 			ref={mergeRefs([ref, cropperRef])}
-			defaultSize={defaultSize}
-			defaultVisibleArea={defaultVisibleArea}
-			postProcess={postProcess}
-			stencilComponent={StencilComponent}
-			transformImageAlgorithm={transformImageAlgorithm}
-			resizeCoordinatesAlgorithm={resizeCoordinatesAlgorithm}
-			stateSettings={{
-				...stateSettings,
-				stencilType,
-			}}
+			stencilConstraints={stencilConstraints}
 			stencilProps={{
 				...stencilProps,
-				...stencilClassNames,
+				lineClassNames: joinClassNames(stencilProps.lineClassNames, {
+					default: 'rmc-stencil__line',
+				}),
+				handlerWrapperClassNames: joinClassNames(stencilProps.handlerWrapperClassNames, {
+					default: 'rmc-stencil__handler-wrapper',
+					westNorth: 'rmc-stencil__handler-wrapper--west-north',
+					eastSouth: 'rmc-stencil__handler-wrapper--east-south',
+					westSouth: 'rmc-stencil__handler-wrapper--west-south',
+					eastNorth: 'rmc-stencil__handler-wrapper--east-north',
+				}),
+				handlerClassNames: joinClassNames(stencilProps.handlerClassNames, {
+					default: 'rmc-stencil__handler',
+					hover: 'rmc-stencil__handler--hover',
+					westNorth: 'rmc-stencil__handler--west-north',
+					eastSouth: 'rmc-stencil__handler--east-south',
+					westSouth: 'rmc-stencil__handler--west-south',
+					eastNorth: 'rmc-stencil__handler--east-north',
+				}),
+				previewClassName: cn(stencilProps.previewClassName, 'rmc-stencil__preview'),
 				movable: false,
 			}}
 			wrapperComponent={WrapperComponent}
@@ -135,10 +80,13 @@ export const Cropper = forwardRef((props: CropperProps, ref) => {
 				navigation,
 				spinnerClassName,
 			}}
-			imageRestriction={'none'}
-			transitions={true}
-			priority={'visibleArea'}
+			imageRestriction={ImageRestriction.none}
 			className={cn('rmc-cropper', className)}
+			postProcess={autoZoom}
+			defaultSize={defaultSize}
+			transformImageAlgorithm={transformImage}
+			resizeCoordinatesAlgorithm={resizeCoordinates}
+			transitions={true}
 		/>
 	);
 });

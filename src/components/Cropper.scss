@@ -6,7 +6,7 @@
 	color: $rmc-main-color;
 }
 
-.rmc-rectangle-stencil, .rmc-circle-stencil {
+.rmc-stencil {
 	&__line {
 		border-color: rgba($rmc-line-color, 0.8);
 	}
@@ -76,20 +76,6 @@
 			border-top: solid $rmc-big-handler-width $rmc-base-color;
 		}
 
-		&--hover {
-			opacity: 1;
-		}
-	}
-}
-
-.rmc-circle-stencil {
-	&__line {
-		border-color: rgba($rmc-line-color, 0.3);
-	}
-	&__preview {
-		border: solid 2px rgba($rmc-line-color, 0.4);
-	}
-	&__handler {
 		&--hover {
 			opacity: 1;
 		}

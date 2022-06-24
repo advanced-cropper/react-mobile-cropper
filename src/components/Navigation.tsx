@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 import { CropperMethodOptions } from 'react-advanced-cropper';
 import cn from 'classnames';
 import { FlipHorizontalIcon } from '../icons/FlipHorizontalIcon';
@@ -6,6 +6,7 @@ import { RotateRightIcon } from '../icons/RotateRightIcon';
 import { RotateLeftIcon } from '../icons/RotateLeftIcon';
 import { FlipVerticalIcon } from '../icons/FlipVerticalIcon';
 import { RotateComponent, RotateComponentRef } from './RotateComponent';
+import './Navigation.scss';
 
 export interface PublicNavigationProps {
 	className?: string;
@@ -48,8 +49,8 @@ export const Navigation = forwardRef<NavigationRef, NavigationProps>(
 		ref,
 	) => {
 		const [quarter, setQuarter] = useState(0);
-		const [adjustmentAngle, setAdjustnmentAngle] = useState(0);
-		const rotateComponentRef = useRef<RotateComponentRef>();
+		const [adjustmentAngle, setAdjustmentAngle] = useState(0);
+		const rotateComponentRef = useRef<RotateComponentRef>(null);
 
 		useLayoutEffect(() => {
 			const absRotate = Math.abs(value);
@@ -67,7 +68,8 @@ export const Navigation = forwardRef<NavigationRef, NavigationProps>(
 			if (rotate !== quarter) {
 				setQuarter(rotate);
 			}
-			setAdjustnmentAngle(Math.sign(value) * (Math.abs(value) - Math.abs(rotate) * 90));
+			setAdjustmentAngle(Math.sign(value) * (Math.abs(value) - Math.abs(rotate) * 90));
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 		}, [value]);
 
 		useImperativeHandle(ref, () => {
