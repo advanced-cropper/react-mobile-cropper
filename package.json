@@ -1,12 +1,11 @@
 {
   "name": "react-mobile-cropper",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "The react mobile cropper inspired by Android mobile croppers",
   "author": "Norserium",
   "license": "MIT",
   "repository": "Norserium/react-mobile-cropper",
 	"main": "dist/index.cjs.js",
-	"browser": "dist/index.global.js",
 	"unpkg": "dist/index.global.js",
 	"jsdelivr": "dist/index.global.js",
 	"module": "dist/index.esm-bundler.js",
@@ -14,6 +13,7 @@
   "keywords": [
     "react",
     "cropper",
+    "mobile",
     "library",
     "advanced",
     "lightweight",
@@ -27,14 +27,16 @@
   "scripts": {
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "build": "rollup -c && gulp build",
+    "build": "npm run build:library && npm run build:styles",
+    "build:library": "rollup -c",
+    "build:styles": "node scripts/styles.js",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn build",
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^15.0.0 || ^16.0.0 || ^17.0.0"
+    "react": "^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^5.3.0",
@@ -60,12 +62,9 @@
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-standard": "^3.1.0",
+    "fs-extra": "9.1.0",
     "gh-pages": "^1.2.0",
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-postcss": "^9.0.1",
-    "gulp-sass": "^5.0.0",
-    "gulp-sourcemaps": "^3.0.0",
+    "glob": "^8.0.3",
     "prettier": "^2.4.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
@@ -76,7 +75,7 @@
     "rollup-plugin-scss": "^2.6.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-visualizer": "^5.6.0",
-    "sass": "^1.53.0",
+    "sass": "^1.54.4",
     "typescript": "^4.0.5"
   },
   "files": [
@@ -84,7 +83,7 @@
   ],
   "dependencies": {
     "classnames": "^2.2.6",
-    "react-advanced-cropper": "^0.7.3",
+    "react-advanced-cropper": "~0.10.2",
     "tslib": "^2.0.3"
   }
 }

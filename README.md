@@ -8,7 +8,7 @@ The react mobile cropper is highly inspirited by popular Android mobile croppers
 [![NPM](https://img.shields.io/npm/v/react-mobile-cropper.svg)](https://www.npmjs.com/package/react-mobile-cropper) <a href="https://npmcharts.com/compare/react-mobile-cropper?minimal=true"><img src="https://img.shields.io/npm/dm/react-mobile-cropper.svg?sanitize=true" alt="Downloads"></a>
 
 
-![](https://github.com/norserium/react-mobile-cropper/blob/master/example/live-example.gif?raw=true)
+![](https://github.com/norserium/react-mobile-cropper/blob/master/example/example.gif?raw=true)
 
 ## Install
 

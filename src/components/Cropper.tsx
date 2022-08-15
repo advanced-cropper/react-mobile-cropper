@@ -7,7 +7,6 @@ import {
 	CropperRef,
 	mergeRefs,
 	ImageRestriction,
-	joinClassNames,
 } from 'react-advanced-cropper';
 import {
 	autoZoom,
@@ -18,7 +17,6 @@ import {
 } from 'advanced-cropper/showcase/telegram';
 import { PublicNavigationProps } from './Navigation';
 import { CropperWrapper } from './CropperWrapper';
-import './Cropper.scss';
 
 export interface CropperProps
 	extends Omit<
@@ -52,26 +50,8 @@ export const Cropper = forwardRef((props: CropperProps, ref) => {
 			ref={mergeRefs([ref, cropperRef])}
 			stencilConstraints={stencilConstraints}
 			stencilProps={{
+				grid: true,
 				...stencilProps,
-				lineClassNames: joinClassNames(stencilProps.lineClassNames, {
-					default: 'rmc-stencil__line',
-				}),
-				handlerWrapperClassNames: joinClassNames(stencilProps.handlerWrapperClassNames, {
-					default: 'rmc-stencil__handler-wrapper',
-					westNorth: 'rmc-stencil__handler-wrapper--west-north',
-					eastSouth: 'rmc-stencil__handler-wrapper--east-south',
-					westSouth: 'rmc-stencil__handler-wrapper--west-south',
-					eastNorth: 'rmc-stencil__handler-wrapper--east-north',
-				}),
-				handlerClassNames: joinClassNames(stencilProps.handlerClassNames, {
-					default: 'rmc-stencil__handler',
-					hover: 'rmc-stencil__handler--hover',
-					westNorth: 'rmc-stencil__handler--west-north',
-					eastSouth: 'rmc-stencil__handler--east-south',
-					westSouth: 'rmc-stencil__handler--west-south',
-					eastNorth: 'rmc-stencil__handler--east-north',
-				}),
-				previewClassName: cn(stencilProps.previewClassName, 'rmc-stencil__preview'),
 				movable: false,
 			}}
 			wrapperComponent={WrapperComponent}

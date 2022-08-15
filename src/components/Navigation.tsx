@@ -1,12 +1,11 @@
 import React, { forwardRef, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
-import { CropperMethodOptions } from 'react-advanced-cropper';
+import { ImmediatelyOptions, InteractionOptions, TransitionOptions } from 'advanced-cropper';
 import cn from 'classnames';
 import { FlipHorizontalIcon } from '../icons/FlipHorizontalIcon';
 import { RotateRightIcon } from '../icons/RotateRightIcon';
 import { RotateLeftIcon } from '../icons/RotateLeftIcon';
 import { FlipVerticalIcon } from '../icons/FlipVerticalIcon';
 import { RotateComponent, RotateComponentRef } from './RotateComponent';
-import './Navigation.scss';
 
 export interface PublicNavigationProps {
 	className?: string;
@@ -21,8 +20,13 @@ export interface PublicNavigationProps {
 
 interface NavigationProps extends PublicNavigationProps {
 	value: number;
-	onRotate?: (angle: number, options?: CropperMethodOptions) => void;
-	onFlip?: (horizontal: boolean, vertical?: boolean, options?: CropperMethodOptions) => void;
+	onRotate?: (angle: number, options?: TransitionOptions & InteractionOptions & ImmediatelyOptions) => void;
+	onRotateEnd?: () => void;
+	onFlip?: (
+		horizontal: boolean,
+		vertical?: boolean,
+		options?: TransitionOptions & InteractionOptions & ImmediatelyOptions,
+	) => void;
 	className?: string;
 	disabled?: unknown;
 }
@@ -44,6 +48,7 @@ export const Navigation = forwardRef<NavigationRef, NavigationProps>(
 			disabled,
 			value,
 			onRotate,
+			onRotateEnd,
 			onFlip,
 		}: NavigationProps,
 		ref,
@@ -86,6 +91,8 @@ export const Navigation = forwardRef<NavigationRef, NavigationProps>(
 			if (onRotate && !disabled) {
 				onRotate(angle, {
 					transitions: false,
+					interaction: true,
+					immediately: true,
 				});
 			}
 		};
@@ -142,6 +149,7 @@ export const Navigation = forwardRef<NavigationRef, NavigationProps>(
 					valueBarClassName={valueBarClassName}
 					highlightedBarClassName={highlightedBarClassName}
 					onChange={rotateTo}
+					onBlur={onRotateEnd}
 					from={-45}
 					to={45}
 					value={adjustmentAngle}

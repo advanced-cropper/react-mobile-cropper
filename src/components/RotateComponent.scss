@@ -22,7 +22,7 @@
 		transform: translateY(-50%);
 		background: $rmc-bar-color;
 		&--highlighted {
-			background-color: $rmc-base-color;
+			background-color: $rmc-highlighted-bar-color;
 		}
 		&--zero {
 			height: 20px;
@@ -34,8 +34,8 @@
 		top: 50%;
 		transform: translate(-50%, -50%);
 		width: 3px;
-		background-color: $rmc-base-color;
-		color: $rmc-base-color;
+		background-color: $rmc-accent-color;
+		color: $rmc-accent-color;
 		height: 25px;
 		border-radius: 2px;
 	}
