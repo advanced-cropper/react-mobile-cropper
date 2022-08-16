@@ -1,14 +1,14 @@
 {
   "name": "react-mobile-cropper",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "The react mobile cropper inspired by Android mobile croppers",
   "author": "Norserium",
   "license": "MIT",
   "repository": "Norserium/react-mobile-cropper",
-	"main": "dist/index.cjs.js",
-	"unpkg": "dist/index.global.js",
-	"jsdelivr": "dist/index.global.js",
-	"module": "dist/index.esm-bundler.js",
+  "main": "dist/index.cjs.js",
+  "unpkg": "dist/index.global.js",
+  "jsdelivr": "dist/index.global.js",
+  "module": "dist/index.esm-bundler.js",
   "types": "dist/index.d.ts",
   "keywords": [
     "react",
@@ -80,8 +80,8 @@
   ],
   "dependencies": {
     "classnames": "^2.2.6",
-    "react-advanced-cropper": "~0.10.3",
+    "react-advanced-cropper": "~0.10.4",
     "tslib": "^2.4.0"
   },
-	"sideEffects": false
+  "sideEffects": false
 }
