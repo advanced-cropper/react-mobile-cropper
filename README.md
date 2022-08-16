@@ -3,12 +3,12 @@
 The react mobile cropper is highly inspirited by popular Android mobile croppers. It was created as the demonstration of [react-advanced-cropper](https://github.com/norserium/react-advanced-cropper) possibilities and uses it under the hood. Therefore, its documentation would be helpful in the edge cases.
 
 
-[Demo](https://norserium.github.io/react-advanced-cropper/#mobile-cropper) / [Sandbox](https://codesandbox.io/s/react-mobile-cropper-c1bz2)
+[Demo](https://advanced-cropper.github.io/react-advanced-cropper/#mobile-cropper) / [Sandbox](https://codesandbox.io/s/react-mobile-cropper-c1bz2)
 
 [![NPM](https://img.shields.io/npm/v/react-mobile-cropper.svg)](https://www.npmjs.com/package/react-mobile-cropper) <a href="https://npmcharts.com/compare/react-mobile-cropper?minimal=true"><img src="https://img.shields.io/npm/dm/react-mobile-cropper.svg?sanitize=true" alt="Downloads"></a>
 
 
-![](https://github.com/norserium/react-mobile-cropper/blob/master/example/example.gif?raw=true)
+![](https://github.com/advanced-cropper/react-mobile-cropper/blob/master/example/example.gif?raw=true)
 
 ## Install
 
@@ -83,12 +83,12 @@ To change the cropper's main color you should redefine `color` property for the 
 | maxWidth                  | `number`                  | The maximum width of the stencil (percents)                     			      |
 | maxHeight                 | `number`                  | The maximum height of the stencil (percents)                    			      |
 | checkOrientation          | `boolean`                 | Check if EXIF orientation should be checked                     			      | `true`
-| resizeImage               | `boolean`, `object`       | The options for the image resizing ([details](https://norserium.github.io/react-mobile-cropper/docs/components/Cropper#resizeimage)) | `true`
-| moveImage                 | `boolean`, `object`       | The options for the image moving ([details](https://norserium.github.io/react-mobile-cropper/docs/components/Cropper#moveimage)) | `true`
+| resizeImage               | `boolean`, `object`       | The options for the image resizing ([details](https://advanced-cropper.github.io/react-mobile-cropper/docs/components/Cropper#resizeimage)) | `true`
+| moveImage                 | `boolean`, `object`       | The options for the image moving ([details](https://advanced-cropper.github.io/react-mobile-cropper/docs/components/Cropper#moveimage)) | `true`
 | defaultSize               | `object`, `Function`      | The function that returns the default size of the stencil or object              |
 | defaultPosition           | `object`, `Function`      | The function that returns the default position of the stencil or object          |
 
-See [the documentation](https://norserium.github.io/react-mobile-cropper/docs/components/Cropper) for more props and details.
+See [the documentation](https://advanced-cropper.github.io/react-mobile-cropper/docs/components/Cropper) for more props and details.
 Notice, in this cropper props `transitions`, `priority`, `imageRestrictions` and `stencilSize` are not available.
 
 ## RectangleStencil
@@ -112,7 +112,7 @@ Notice, in this cropper props `transitions`, `priority`, `imageRestrictions` and
 | lineClassNames            | `object`            | The object of custom line classes                              |
 | lineWrapperClassNames     | `object`            | The object of custom line wrapper classes                      |
 
-See [the documentation](https://norserium.github.io/react-mobile-cropper/docs/components/RectangleStencil) for more props and details.
+See [the documentation](https://advanced-cropper.github.io/react-mobile-cropper/docs/components/RectangleStencil) for more props and details.
 
 ## License
 
