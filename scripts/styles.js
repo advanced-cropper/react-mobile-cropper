@@ -18,7 +18,9 @@ async function copyStyleSources(source, dist) {
 async function buildStyles(styles, dist) {
 	await Promise.all(
 		styles.map(async (style) => {
-			const { css } = await sass.compileAsync(style);
+			const { css } = await sass.compileAsync(style, {
+				loadPaths: ['node_modules'],
+			});
 
 			postcss([autoprefixer])
 				.process(css)
