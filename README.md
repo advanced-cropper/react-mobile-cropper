@@ -66,30 +66,31 @@ To change the cropper's main color you should redefine `color` property for the 
 
 ## Cropper
 
-| Prop                      | Type                      | Description                                                     			      | Default
-| ------------------------- | ------------------------- | --------------------------------------------------------------------------- | ---------------
-| src                       | `string`                  | The cropping image (link / base64)                              			      |
-| stencilType               | `'circle'`, `'rectangle'` | The type of stencil                                    			                | `'rectangle'`
-| stencilComponent          | `Component`               | The stencil component                                           			      | `RectangleStencil`
-| stencilProps              | `object`                  | The props for the stencil component                             			      | `{}`
-| className                 | `string`                  | The optional class for the root cropper block                   			      |
-| imageClassName            | `string`                  | The optional class for the cropping image                       			      |
-| boundaryClassName         | `string`                  | The optional class for the area.                                			      |
-| backgroundClassName       | `string`                  | The optional class for the background under the image           			      |
-| transitions               | `boolean`, `object`       | Enable / disable auto zoom                                     			        | `false`
-| canvas                    | `boolean`                 | The flag that indicates if canvas should be used                			      | `true`
-| minWidth                  | `number`                  | The minimum width of the stencil (percents)                     			      |
-| minHeight                 | `number`                  | The minimum height of the stencil (percents)                    			      |
-| maxWidth                  | `number`                  | The maximum width of the stencil (percents)                     			      |
-| maxHeight                 | `number`                  | The maximum height of the stencil (percents)                    			      |
-| checkOrientation          | `boolean`                 | Check if EXIF orientation should be checked                     			      | `true`
+| Prop                      | Type                      | Description                                                     			                                                                         | Default
+| ------------------------- |---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------| ---------------
+| src                       | `string`                  | The cropping image (link / base64)                              			                                                                         |
+| stencilType               | `'circle'`, `'rectangle'` | The type of stencil                                    			                                                                                  | `'rectangle'`
+| stencilComponent          | `Component`               | The stencil component                                           			                                                                         | `RectangleStencil`
+| stencilProps              | `object`                  | The props for the stencil component                             			                                                                         | `{}`
+| className                 | `string`                  | The optional class for the root cropper block                   			                                                                         |
+| imageClassName            | `string`                  | The optional class for the cropping image                       			                                                                         |
+| boundaryClassName         | `string`                  | The optional class for the area.                                			                                                                         |
+| backgroundClassName       | `string`                  | The optional class for the background under the image           			                                                                         |
+| transitions               | `boolean`, `object`       | Enable / disable auto zoom                                     			                                                                          | `false`
+| canvas                    | `boolean`                 | The flag that indicates if canvas should be used                			                                                                         | `true`
+| minWidth                  | `number`                  | The minimum width of the stencil (percents)                     			                                                                         |
+| minHeight                 | `number`                  | The minimum height of the stencil (percents)                    			                                                                         |
+| maxWidth                  | `number`                  | The maximum width of the stencil (percents)                     			                                                                         |
+| maxHeight                 | `number`                  | The maximum height of the stencil (percents)                    			                                                                         |
+| checkOrientation          | `boolean`                 | Check if EXIF orientation should be checked                     			                                                                         | `true`
 | resizeImage               | `boolean`, `object`       | The options for the image resizing ([details](https://advanced-cropper.github.io/react-mobile-cropper/docs/components/Cropper#resizeimage)) | `true`
-| moveImage                 | `boolean`, `object`       | The options for the image moving ([details](https://advanced-cropper.github.io/react-mobile-cropper/docs/components/Cropper#moveimage)) | `true`
-| defaultSize               | `object`, `Function`      | The function that returns the default size of the stencil or object              |
-| defaultPosition           | `object`, `Function`      | The function that returns the default position of the stencil or object          |
+| moveImage                 | `boolean`, `object`       | The options for the image moving ([details](https://advanced-cropper.github.io/react-mobile-cropper/docs/components/Cropper#moveimage))     | `true`
+| imageRestriction          | `string`                  | Set restrictions for image position ('stencil', 'none')                                                                                     | `'stencil'`
+| defaultSize               | `object`, `Function`      | The function that returns the default size of the stencil or object                                                                         |
+| defaultPosition           | `object`, `Function`      | The function that returns the default position of the stencil or object                                                                     |
 
 See [the documentation](https://advanced-cropper.github.io/react-mobile-cropper/docs/components/Cropper) for more props and details.
-Notice, in this cropper props `transitions`, `priority`, `imageRestrictions` and `stencilSize` are not available.
+Notice, in this cropper props `transitions`, `priority`, and `stencilSize` are not available.
 
 ## RectangleStencil
 

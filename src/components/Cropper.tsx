@@ -3,18 +3,19 @@ import cn from 'classnames';
 import {
 	Cropper as DefaultCropper,
 	CropperProps as DefaultCropperProps,
-	ScaleImageSettings,
 	CropperRef,
-	mergeRefs,
 	ImageRestriction,
+	mergeRefs,
+	ScaleImageSettings,
 } from 'react-advanced-cropper';
 import {
-	autoZoom,
-	resizeCoordinates,
-	transformImage,
+	fitStencilToImage,
+	zoomStencil,
 	defaultSize,
+	resizeCoordinates,
 	stencilConstraints,
-} from 'advanced-cropper/showcase/telegram';
+	transformImage,
+} from 'advanced-cropper/showcase/mobile';
 import { PublicNavigationProps } from './Navigation';
 import { CropperWrapper } from './CropperWrapper';
 
@@ -27,6 +28,7 @@ export interface CropperProps
 	resizeImage?: boolean | Omit<ScaleImageSettings, 'adjustStencil'>;
 	navigation?: boolean;
 	navigationProps?: PublicNavigationProps;
+	imageRestriction?: ImageRestriction.none | ImageRestriction.stencil;
 }
 
 export const Cropper = forwardRef((props: CropperProps, ref) => {
@@ -37,6 +39,7 @@ export const Cropper = forwardRef((props: CropperProps, ref) => {
 		stencilProps = {},
 		navigationProps = {},
 		wrapperComponent,
+		imageRestriction = ImageRestriction.stencil,
 		...cropperProps
 	} = props;
 
@@ -62,11 +65,11 @@ export const Cropper = forwardRef((props: CropperProps, ref) => {
 			}}
 			imageRestriction={ImageRestriction.none}
 			className={cn('rmc-cropper', className)}
-			postProcess={autoZoom}
 			defaultSize={defaultSize}
 			transformImageAlgorithm={transformImage}
-			resizeCoordinatesAlgorithm={resizeCoordinates}
 			transitions={true}
+			postProcess={imageRestriction === ImageRestriction.none ? zoomStencil : [fitStencilToImage, zoomStencil]}
+			resizeCoordinatesAlgorithm={imageRestriction === ImageRestriction.none ? undefined : resizeCoordinates}
 		/>
 	);
 });
