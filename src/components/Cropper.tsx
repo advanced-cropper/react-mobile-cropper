@@ -6,7 +6,7 @@ import {
 	CropperRef,
 	ImageRestriction,
 	mergeRefs,
-	ScaleImageSettings,
+	ScaleImageOptions,
 } from 'react-advanced-cropper';
 import {
 	fitStencilToImage,
@@ -25,7 +25,7 @@ export interface CropperProps
 		'transitions' | 'priority' | 'imageRestriction' | 'stencilSize' | 'stencilConstraints' | 'transformImage'
 	> {
 	spinnerClassName?: string;
-	resizeImage?: boolean | Omit<ScaleImageSettings, 'adjustStencil'>;
+	resizeImage?: boolean | Omit<ScaleImageOptions, 'adjustStencil'>;
 	navigation?: boolean;
 	navigationProps?: PublicNavigationProps;
 	imageRestriction?: ImageRestriction.none | ImageRestriction.stencil;
