@@ -1,6 +1,6 @@
 {
   "name": "react-mobile-cropper",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "The react mobile cropper inspired by Android mobile croppers",
   "author": "Norserium",
   "license": "MIT",
@@ -80,7 +80,7 @@
   ],
   "dependencies": {
     "classnames": "^2.2.6",
-    "react-advanced-cropper": "~0.19.2",
+    "react-advanced-cropper": "~0.19.3",
     "tslib": "^2.4.0"
   },
 	"sideEffects": ["**/*.css"]

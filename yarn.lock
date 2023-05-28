@@ -9560,10 +9560,10 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-advanced-cropper@~0.19.2:
-  version "0.19.2"
-  resolved "https://registry.yarnpkg.com/react-advanced-cropper/-/react-advanced-cropper-0.19.2.tgz#cfa0ff134a3f702dfde00db9439402051f02735f"
-  integrity sha512-DP8fBLn7AjsAfXbdHg9TasSNGY0dOzr6ISg+NNQnwvdyL1zmBW7MqQowAh153MKjJDwSoRy8UE0oWE8Y9ADI0Q==
+react-advanced-cropper@~0.19.3:
+  version "0.19.3"
+  resolved "https://registry.yarnpkg.com/react-advanced-cropper/-/react-advanced-cropper-0.19.3.tgz#54c60e682aaa549cb9921a65a252cae0eede9bf5"
+  integrity sha512-rC07DvUMidJgyD9sR1Clz9R3RtxgfrpjZN837awJFcnhlDjKs3arwUA6rfhJZ3jHuo9FmQfZ86xmDeNA1PBFKg==
   dependencies:
     advanced-cropper "~0.18.0"
     classnames "^2.2.6"

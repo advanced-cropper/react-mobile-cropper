@@ -135,10 +135,10 @@ export const Navigation = forwardRef<NavigationRef, NavigationProps>(
 
 		return (
 			<div className={cn('rmc-navigation', className)}>
-				<button className={cn('rmc-navigation__button', buttonClassName)} onClick={flipHorizontal}>
+				<button type="button" className={cn('rmc-navigation__button', buttonClassName)} onClick={flipHorizontal}>
 					<FlipHorizontalIcon />
 				</button>
-				<button className={cn('rmc-navigation__button', buttonClassName)} onClick={rotateRight}>
+				<button type="button" className={cn('rmc-navigation__button', buttonClassName)} onClick={rotateRight}>
 					<RotateRightIcon />
 				</button>
 				<RotateComponent
@@ -154,10 +154,10 @@ export const Navigation = forwardRef<NavigationRef, NavigationProps>(
 					to={45}
 					value={adjustmentAngle}
 				/>
-				<button className={cn('rmc-navigation__button', buttonClassName)} onClick={rotateLeft}>
+				<button type="button" className={cn('rmc-navigation__button', buttonClassName)} onClick={rotateLeft}>
 					<RotateLeftIcon />
 				</button>
-				<button className={cn('rmc-navigation__button', buttonClassName)} onClick={flipVertical}>
+				<button type="button" className={cn('rmc-navigation__button', buttonClassName)} onClick={flipVertical}>
 					<FlipVerticalIcon />
 				</button>
 			</div>
