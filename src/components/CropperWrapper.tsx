@@ -6,8 +6,6 @@ import { Navigation, NavigationRef, PublicNavigationProps } from './Navigation';
 
 export interface CropperWrapperProps<CropperRef = unknown> {
 	cropper: CropperRef;
-	loading: boolean;
-	loaded: boolean;
 	className?: string;
 	style?: CSSProperties;
 	spinnerClassName?: string;
@@ -18,8 +16,6 @@ export interface CropperWrapperProps<CropperRef = unknown> {
 export const CropperWrapper: FC<CropperWrapperProps<CropperRef>> = ({
 	cropper,
 	children,
-	loaded,
-	loading,
 	className,
 	spinnerClassName,
 	navigation,
@@ -32,6 +28,10 @@ export const CropperWrapper: FC<CropperWrapperProps<CropperRef>> = ({
 	const transitions = cropper.getTransitions();
 
 	const { rotate } = cropper.getTransforms();
+
+	const loading = cropper.isLoading();
+
+	const loaded = cropper.isLoaded();
 
 	useEffect(() => {
 		navigationRef.current?.refresh();

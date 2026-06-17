@@ -1805,10 +1805,10 @@ address@^1.0.1:
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
   integrity sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==
 
-advanced-cropper@~0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/advanced-cropper/-/advanced-cropper-0.18.0.tgz#dc09a572ac719ee6f149a73ffd4ef094b7b7e1a1"
-  integrity sha512-Bo0fiW8F+kI4f8zEm8YXIDkGNi+aXaQPxqDijU7hY+1ETACbvFnNCxssspgAwHBy9RpFlcXMmjcq+LImUOhaqQ==
+advanced-cropper@~0.17.1:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/advanced-cropper/-/advanced-cropper-0.17.1.tgz#fedb73d9f48a3eae53a3a80de575a4e5c1febade"
+  integrity sha512-Z1P0sYOXa2tqZjeY742QtNERofXh1AuOa27LEurO9rbx3IfzLrGQlzy7sWEc5VN9hRg+J/qCiMmnB6tUDLb1TA==
   dependencies:
     tslib "^2.4.0"
 
@@ -9560,12 +9560,12 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-advanced-cropper@~0.19.3:
-  version "0.19.3"
-  resolved "https://registry.yarnpkg.com/react-advanced-cropper/-/react-advanced-cropper-0.19.3.tgz#54c60e682aaa549cb9921a65a252cae0eede9bf5"
-  integrity sha512-rC07DvUMidJgyD9sR1Clz9R3RtxgfrpjZN837awJFcnhlDjKs3arwUA6rfhJZ3jHuo9FmQfZ86xmDeNA1PBFKg==
+react-advanced-cropper@~0.20.1:
+  version "0.20.1"
+  resolved "https://registry.yarnpkg.com/react-advanced-cropper/-/react-advanced-cropper-0.20.1.tgz#2db69e6fb76e862b7db86bf5fb94250c98ec4607"
+  integrity sha512-Pcmkv0xQMpig6+LkM+zLbEuqBbYG3+CwXvIfYU+LDNn9l8t91Jm0fp9MSTNW0pjIvT6frAGTfmlnvnZW4PEs7Q==
   dependencies:
-    advanced-cropper "~0.18.0"
+    advanced-cropper "~0.17.1"
     classnames "^2.2.6"
     tslib "^2.4.0"
 
